@@ -9,7 +9,7 @@ const os = require("os");
 const ess = require('./ess');
 const math = require('mathjs');
 const prefix = "="
-const { token} = require('./config.json');
+require('dotenv');
 
 //Client-side
 client.on('ready', () => {
@@ -335,4 +335,4 @@ if (commandIs("purge")) {
 
 
 
-client.login(token);
+client.login(process.env.TOKEN);
