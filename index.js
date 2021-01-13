@@ -9,6 +9,7 @@ const os = require("os");
 const ess = require('./ess');
 const math = require('mathjs');
 const prefix = "="
+const { token} = require('./config.json');
 
 //Client-side
 client.on('ready', () => {
@@ -334,4 +335,4 @@ if (commandIs("purge")) {
 
 
 
-client.login("Nzk3NzY3NjIyOTM4NzIyMzE1.X_rQ_w.JcdvGFhkn-sYQ_p5SjYq9wPsVBk");
+client.login(token);
