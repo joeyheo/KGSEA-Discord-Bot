@@ -9,7 +9,7 @@ const os = require("os");
 const ess = require('./ess');
 const math = require('mathjs');
 const prefix = "="
-require('dotenv');
+require('dotenv').config();
 
 //Client-side
 client.on('ready', () => {
