@@ -80,7 +80,7 @@ client.on('message', message => {
             .addField("Region", guild.region, true)
 
             .addField("Verification Level", guild.verificationLevel, true)
-            .addField("Channels", guild.channels.array().length, true)
+            .addField("Channels", guild.channels.cache.array().length, true)
             .addField("Members", guild.memberCount, true)
             .addField("Creation Date", guild.createdAt, true)
 
@@ -154,7 +154,7 @@ if(commandIs("userinfo")){
          .addField("Nickname", guildMember.nickname)
          .addField("Moderator", guildMember.hasPermission("BAN_MEMBERS"))
          .addField("Joined at", guildMember.joinedAt)
-         .addField("Role(s)", guildMember.roles.array().join(", "))
+         .addField("Role(s)", guildMember.roles.cache.array().join(", "))
        message.channel.send(embed)
      }
      return;
@@ -243,7 +243,7 @@ if(commandIs("botstatus")){
            .addField("CPU Percentage", `${percentageCPU}%`, true)
            .addField("RAM Usage", `${Math.round(process.memoryUsage().heapUsed/ 1024 / 1024 * 100) / 100} MB`, true)
            .addField("Uptime", `${process.uptime().toString().toHHMMSS()}`, true)
-           .addField("Guilds", client.guilds.array().length, true)
+           .addField("Guilds", client.guilds.cache.array().length, true)
            .addField("Users", botMembers, true)
            .addField("Bot Version", `beta`, true)
 
