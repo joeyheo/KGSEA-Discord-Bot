@@ -29,7 +29,8 @@ client.on('message', message => {
   // Saving memory, if there is no prefix it quits.
   if (!message.content.slice(1) === prefix) return;
 
-  const args = message.content.trim().split(/ +/g);
+  let cont = message.content.slice(prefix.length).split(" "); 
+  let args = cont.slice(1); 
   //Function for command checking
   function commandIs(command) {
     if (message.content.startsWith(prefix + command)) {
@@ -68,7 +69,7 @@ client.on('message', message => {
         try {
           let guild = message.guild
 
-          const embed = new Discord.RichEmbed()
+          const embed = new Discord.MessageEmbed()
             .setDescription("Description and information about this server")
             .setColor(3447003)
             .setThumbnail(guild.iconURL)
@@ -120,7 +121,7 @@ if(commandIs("userinfo")){
      if (message.mentions.members.first()) {
        let member = message.mentions.members.first().user
        let guildMember = message.mentions.members.first()
-       const embed = new Discord.RichEmbed()
+       const embed = new Discord.MessageEmbed()
          .setDescription("Description and information about " + member.tag)
          .setAuthor(member.username, member.displayAvatarURL)
          .setColor(3447003)
@@ -139,7 +140,7 @@ if(commandIs("userinfo")){
      } else {
        let member = message.author
        let guildMember = message.guild.member(member)
-       const embed = new Discord.RichEmbed()
+       const embed = new Discord.MessageEmbed()
          .setDescription("Description and information about " + member.tag)
          .setAuthor(member.username, member.displayAvatarURL)
          .setColor(3447003)
@@ -232,7 +233,7 @@ if(commandIs("botstatus")){
          }
          //
 
-         const rich = new Discord.RichEmbed()
+         const rich = new Discord.MessageEmbed()
            .setTitle("Server Internal Status")
            .setDescription("Shows you the internal specification of the server's status")
            .setColor(3447003)
@@ -283,7 +284,7 @@ if(commandIs("membercount")){
 	try {
       let guild = message.guild
 
-      const embed = new Discord.RichEmbed()
+      const embed = new Discord.MessageEmbed()
         .setDescription("membercount")
         .setColor(3447003)
         .setThumbnail(guild.iconURL)
@@ -300,32 +301,6 @@ if(commandIs("membercount")){
       message.channel.send(ess.errorHandle(err));
     }
 }
-
-
-if (commandIs("purge")) {
-    if (message.member.hasPermission("MANAGE_MESSAGES")) {
-     try {
-      if (!Number(message.content.split(" ")[1])) {
-        message.channel.send("Please provide a number for amount of messages to be deleted.")
-        return;
-      }
-      let deleteCount = parseInt(message.content.split(" ")[1])
-      if (deleteCount > 99) {
-        message.channel.send("Please try lower number than 100.");
-        return;
-      }
-
-      message.channel.fetchMessages({
-        limit: deleteCount + 1
-      }).then(messages => message.channel.bulkDelete(messages));
-      message.channel.send(`:white_check_mark: Purged messages.`).then(msg => msg.delete())
-
-
-    } catch (err) {
-      message.channel.send(ess.errorHandle(err));
-    }
-    }
-  }
 
 })
 
