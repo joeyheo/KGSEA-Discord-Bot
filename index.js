@@ -48,8 +48,8 @@ client.on('message', message => {
         collector.on('collect', collected => {
           var collectedArr = collected.toString().replace(/[`~!@#$%^&*()_|+\-=?;:'".<>\{\}\[\]\\\/]/gi,'').split(",");
           if (collectedArr.length = 3) {
-            let role = message.guild.roles.find(r => r.name === "Math Circle Member");
-            let role2 = message.guild.roles.find(r => r.name === "Verification");
+            let role = message.guild.roles.cache.find(r => r.name === "Math Circle Member");
+            let role2 = message.guild.roles.cache.find(r => r.name === "Verification");
             if (!role) return;
             if (!role2) return;
             message.member.removeRole(role2);
