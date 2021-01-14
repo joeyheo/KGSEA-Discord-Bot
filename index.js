@@ -52,8 +52,8 @@ client.on('message', message => {
             let role2 = message.guild.roles.cache.find(r => r.name === "Verification");
             if (!role) return;
             if (!role2) return;
-            message.member.removeRole(role2);
-            message.member.addRole(role);
+            message.member.roles.remove(role2);
+            message.member.roles.add(role);
             console.log(collectedArr[0]);
             console.log(collectedArr[1]);
             console.log(collectedArr[2]);
